@@ -1,0 +1,19 @@
+(() => {
+'use strict';
+const $ = s => document.querySelector(s);
+const modal=$('#booking-modal'), sheet=modal.querySelector('.booking-sheet'), form=$('#booking-form'), select=$('#booking-car'), start=$('#start-date'), end=$('#end-date');
+const localToday=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+start.min=end.min=localToday();
+let trigger;
+function close(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');$('.page-shell').inert=false;$('.bottom-nav').inert=false;trigger?.focus()}
+document.querySelectorAll('.js-reserve').forEach(b=>b.addEventListener('click',()=>{trigger=b;select.value=b.dataset.model||'Autre véhicule / conseil';modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');$('.page-shell').inert=true;$('.bottom-nav').inert=true;$('#customer-name').focus()}));
+modal.querySelectorAll('.sheet-close,.modal-backdrop').forEach(b=>b.addEventListener('click',close));
+document.addEventListener('keydown',e=>{if(!modal.classList.contains('is-open'))return;if(e.key==='Escape')close();if(e.key==='Tab'){const a=[...sheet.querySelectorAll('button,select,input,textarea,a[href]')].filter(x=>!x.disabled);const first=a[0],last=a[a.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+function duration(){end.setCustomValidity('');end.min=start.value||localToday();const a=new Date(`${start.value}T${$('#start-time').value}`),b=new Date(`${end.value}T${$('#end-time').value}`);if(!start.value||!end.value){$('#booking-summary').textContent='';return}if(b<=a){end.setCustomValidity('Le retour doit être après le départ.');$('#booking-summary').textContent='Choisissez un retour après le départ.';return}$('#booking-summary').textContent=`Durée indicative : ${Math.ceil((b-a)/86400000)} jour(s). Tarif à confirmer avec l’agence.`}
+[start,end,$('#start-time'),$('#end-time')].forEach(el=>el.addEventListener('change',duration));
+form.addEventListener('submit',e=>{e.preventDefault();start.min=localToday();duration();if(!form.reportValidity())return;const fmt=v=>v.split('-').reverse().join('/');const message=`Bonjour Location Hills Car, je souhaite un devis de location.\n\nNom : ${$('#customer-name').value.trim()}\nVéhicule : ${select.value}\nDépart : ${fmt(start.value)} à ${$('#start-time').value}\nRetour : ${fmt(end.value)} à ${$('#end-time').value}\nPrise en charge : ${$('#pickup').value.trim()}\nMessage : ${$('#message').value.trim()||'Aucun'}\n\nPouvez-vous confirmer le tarif, la disponibilité et les conditions ?`;window.open(`https://wa.me/212660734149?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer')});
+let category='all';const norm=t=>t.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+function filter(){let count=0;const term=norm($('#car-search').value.trim());document.querySelectorAll('.car-card').forEach(card=>{const show=(category==='all'||card.dataset.category.split(' ').includes(category))&&norm(card.querySelector('.js-reserve').dataset.model).includes(term);card.classList.toggle('is-hidden',!show);if(show)count++});$('#result-count').textContent=`${count} modèle${count>1?'s':''} dans votre sélection`;$('#empty-results').hidden=count!==0}
+document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{category=b.dataset.filter;document.querySelectorAll('.filter').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))});filter()}));$('#car-search').addEventListener('input',filter);
+$('#year').textContent=new Date().getFullYear();
+})();

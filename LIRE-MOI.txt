@@ -1,0 +1,43 @@
+LOCATION HILLS CAR — LANDING PAGE NFC
+
+OUVRIR DANS INTELLIJ IDEA
+1. Extraire entièrement le ZIP.
+2. File > Open : choisir le dossier Location-Hills-Car.
+3. Ouvrir index.html puis Open in Browser (ou double-cliquer le fichier depuis Windows).
+Aucune compilation, aucun npm install, aucune dépendance : HTML, CSS, JavaScript.
+Les fichiers et images sont locaux. Internet est nécessaire seulement pour WhatsApp, Instagram et Google.
+
+FONCTIONS
+15 modèles, filtres par catégorie, recherche par marque/modèle.
+Demande WhatsApp : nom, modèle, dates/heures, lieu et message.
+Contrôle des dates et durée indicative. Aucun tarif inventé.
+Appel, Instagram, itinéraire Google Maps, avis Google, contact vCard.
+FAQ, navigation mobile fixe, adaptation mobile/tablette/ordinateur.
+Navigation clavier, fermeture Échap, gestion du focus et animations réduites.
+
+COORDONNÉES
+Appel : +212660734149 / 06 60 73 41 49
+WhatsApp : https://wa.me/212660734149
+Instagram : https://www.instagram.com/location_hills_car/
+Maps : https://maps.app.goo.gl/SdJm7nM7W5GRYnfu9
+Avis : https://search.google.com/local/writereview?placeid=ChIJR5jDtAHLpw0RwPW0mwo-E1E
+
+FONCTIONNEMENT COMMERCIAL
+Cette page permet les demandes de devis et de réservation. L'agence confirme elle-même les disponibilités, tarifs et conditions. Le site ne gère pas de stock en temps réel, contrat automatique, compte client ou paiement en ligne. Ces fonctions exigent un backend et un prestataire de paiement, absents de ce projet statique.
+Les données saisies restent dans la page jusqu'à l'ouverture de WhatsApp ; le client doit envoyer son message dans WhatsApp.
+Aucun avis, note, tarif ou condition de location n'a été inventé.
+L'ancien Facebook BTM a été retiré, aucun compte Hills Car n'ayant été fourni.
+
+IMAGES
+Logo fourni conservé. Onze images existantes améliorées et quatre illustrations photographiques créées par IA. Elles présentent les modèles à titre illustratif : elles ne constituent pas des photos certifiées du parc réel. Les finitions peuvent varier.
+Les originaux du ZIP restent dans votre archive source. Le dossier assets/cars de ce projet contient seulement les images utilisées.
+
+MISE EN LIGNE ET NFC
+Publier le contenu de ce dossier sur un hébergement statique HTTPS.
+Écrire ensuite l'URL publique dans la puce NFC. Un chemin local file:/// ne fonctionne pas pour les téléphones des clients.
+
+MODIFICATIONS
+index.html : textes, véhicules, coordonnées.
+css/style.css : couleurs et mise en page.
+js/script.js : recherche, filtres et formulaire WhatsApp.
+assets/location-hills-car.vcf : contact téléchargeable.
