@@ -225,3 +225,14 @@ html{scroll-padding-top:24px}.page-shell{max-width:1120px}.site-header{height:80
 }
 @media(max-width:759px){.page-shell{max-width:520px}.site-header{padding:0 20px}.hero{padding:25px 20px 30px}.logo-stage{width:230px;height:90px;margin:12px auto 24px}.hero h1{font-size:64px}.section-pad{padding:46px 20px}.fleet-grid{grid-template-columns:1fr 1fr;gap:12px}.car-card,.car-card.featured{padding:10px}.car-info h3,.featured .car-info h3{font-size:19px}.steps{grid-template-columns:1fr}.steps li{display:grid;grid-template-columns:49px 1fr}.steps li>span{margin:0}.review-section,.faq,.contact{padding-top:0}.section-heading{align-items:start}.fleet-count{display:none}.review-card{padding:30px 18px}.hero-actions{grid-template-columns:1.1fr .9fr}.hero-actions .btn{font-size:12px;padding:0 10px}.social-link small{font-size:9px}}
 @media(max-width:419px){.fleet-grid{grid-template-columns:1fr}.car-image,.featured .car-image{min-height:0}.car-image img,.featured .car-image img{height:100%}.car-info h3,.featured .car-info h3{font-size:25px}.hero h1{font-size:57px}.section-heading h2{font-size:35px}.booking-sheet{padding-left:16px;padding-right:16px}#booking-form input{padding:0 8px;font-size:13px}.google-review-hero{grid-template-columns:36px 1fr 18px}.review-copy b{font-size:12px}}
+
+/* Mobile booking: keep the viewport scale stable when editing a field. */
+#booking-form input, #booking-form select, #booking-form textarea, #car-search {
+  font-size: 16px;
+}
+#booking-form input[type="date"], #booking-form input[type="time"] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
